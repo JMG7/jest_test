@@ -1,24 +1,44 @@
-// import * as functions from './functions';
-// import {addTwo} from './subfunctions'
-import { sum, reSum } from './functions'
+const subFunct = require('./subfunctions')
+const funct = require('./functions')
+const { sum, reSum, reSum2, divide } = funct
 
+afterEach(() => {
+  // restore the spy created with spyOn
+  jest.restoreAllMocks();
+});
 
-// functions.sum = jest.fn(() => 2)
+// MOCK SUBFUNCTIONS
 jest.mock('./subfunctions', () => {
+  const originalModule = jest.requireActual('./subfunctions')
   return {
-    addTwo: ()=>{
-      console.log('a');
-      return 0;
-    },
+    ...originalModule,
+    addTwo: ()=> 0,
   }
 });
 
+// TESTS
 test('adds 1 + 2 to equal 3', () => {
   expect(sum(1, 2)).toBe(3);
 });
 
-test('adds 1 + 2 to equal 3', () => {
+test('a + b + addTwo function.', () => {
+  // In this case, addTwo is mocked an add 0 instead 2.
   expect(reSum(1, 2)).toBe(3);
+});
+
+test('a + b + addThree function.', () => {
+  // In this case, addTwo is mocked an add 0 instead 2.
+  expect(reSum2(1, 2)).toBe(6);
+});
+
+test('divide 4 / 2 to equal 2', () => {
+  expect(divide(4, 2)).toBe(2);
+});
+
+test('divide 4 / 2 to equal 2', () => {
+  const spy = jest.spyOn(subFunct, 'addTwo');
+  expect(reSum(1, 2)).toBe(3);
+  expect(spy).toHaveBeenCalled();
 });
 
 // const callsDivide = () => {
