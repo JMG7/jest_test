@@ -7,7 +7,7 @@ module.exports.useless = returnOne;
 
 function returnNumber(num) {
   console.log('***MOKING FAILED****');
-  return 1;
+  return num;
 }
 module.exports.returnNumber = returnNumber;
 

@@ -67,12 +67,12 @@ describe('Spy block', () => {
   });
   
   // BUG No se ha conseguido espiar correctamente la función 'addDouble' cuando se usa una función 'operationA' de su mismo módulo
-  test('Using `maths` functions spying internal `maths` functions', () => {
-    const spy = jest.spyOn(funct, 'addDouble');
-    expect(operationA(1, 2)).toBe(3);
-    expect(operationA(2, 2)).toBe(4);
-    expect(funct.addDouble.mock.calls[0][0]).toBe(1);
-    expect(funct.addDouble.mock.calls[1][0]).toBe(2);
+  test('Using `maths` functions spying internal `maths` function name `returnNumber`', () => {
+    const spy = jest.spyOn(funct, 'returnNumber');
+    expect(operationB(1, 2)).toBe(4);
+    expect(operationB(2, 2)).toBe(6);
+    expect(funct.returnNumber.mock.calls[0][0]).toBe(1);
+    expect(funct.returnNumber.mock.calls[1][0]).toBe(2);
     expect(spy).toHaveBeenCalled();
   });
 })
