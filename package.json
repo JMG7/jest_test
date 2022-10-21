@@ -5,6 +5,9 @@
   "main": "test1.test",
   "scripts": {
     "test": "jest",
+    "testContinuously": "jest --watch",
+    "testFolder": "jest --testPathPattern='test/spyOn'",
+    "testFolderContinuously": "jest --watchAll --testPathPattern='test/spyOn'",
     "dev": "nodemon jest"
   },
   "type": "module",
